@@ -24,7 +24,7 @@ function MovieCard({ movie }) {
   };
 
   const poster = `https://image.tmdb.org/t/p/w500${movie.poster_path}`;
-
+  
   return (
     <div className="movie-card">
       <div className="movie-poster">
