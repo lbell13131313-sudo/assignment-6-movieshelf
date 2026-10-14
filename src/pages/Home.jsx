@@ -48,7 +48,7 @@ import { getPopularMovies } from '../services/movieService';
   }
 ];*/
 
-function Home() {
+function Home({ searchResults }) {
   const [movies, setMovies] = useState([]);
 
   useEffect(() => {
@@ -60,13 +60,15 @@ function Home() {
     fetchMovies(); // immediately call fetchMovies so the movies array has data
   }, []);
 
+  const displayMovies = searchResults || movies; // if searchResults doesn't have a value then it will display the popular movies instead
+
   return (
     <main className="main-content">
       <div className="content-header">
-        <h2>Popular Movies</h2>
+        <h2>{searchResults ? 'Search Results' : 'Popular Movies'}</h2>
         <p>Discover and save your favorite films</p>
       </div>
-      <MovieGrid movies={movies} />
+      <MovieGrid movies={displayMovies} />
     </main>
   );
 };
