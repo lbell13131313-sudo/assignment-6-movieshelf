@@ -8,7 +8,7 @@ import { useState } from 'react';
 
 function App() {
   const [searchResults, setSearchResults] = useState(null);
-  
+
   const handleSearch = async (query) => { // Handler function to query search
     const results = await searchMovies(query); 
     setSearchResults(results); 
@@ -19,7 +19,7 @@ function App() {
       <div className="app">
         <Header onSearch={handleSearch} />
         <Routes>
-          <Route path="/" element={<Home searchResults={searchResults}/>} />
+          <Route path="/" element={<Home searchResults={searchResults} />} />
           <Route path="/favorites" element={<Favorites />} />
         </Routes>
       </div>
