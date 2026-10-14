@@ -1,7 +1,9 @@
+import { useState, useEffect } from 'react';
 import MovieGrid from '../components/MovieGrid';
+import { getPopularMovies } from '../services/movieService';
 
-// Static movie data for template
-const staticMovies = [
+// Static movie data for template, commented out because I'm not using it
+/*const staticMovies = [
   {
     id: 1,
     title: "The Shawshank Redemption",
@@ -44,16 +46,27 @@ const staticMovies = [
     vote_average: 8.7,
     release_date: "2010-07-16"
   }
-];
+];*/
 
 function Home() {
+  const [movies, setMovies] = useState([]);
+
+  useEffect(() => {
+    const fetchMovies = async () => { // invokes my service function
+      const movieData = await getPopularMovies();
+      setMovies(movieData); // setMovies now is set to movieData
+    };
+
+    fetchMovies(); // immediately call fetchMovies so the movies array has data
+  }, []);
+
   return (
     <main className="main-content">
       <div className="content-header">
         <h2>Popular Movies</h2>
         <p>Discover and save your favorite films</p>
       </div>
-      <MovieGrid movies={staticMovies} />
+      <MovieGrid movies={movies} />
     </main>
   );
 };
