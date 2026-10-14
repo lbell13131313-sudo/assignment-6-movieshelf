@@ -7,3 +7,11 @@ export async function getPopularMovies() {
     const data = await response.json();
     return data.movies; // returns the movie data
 };
+
+export async function searchMovies(query) {
+    const response = await fetch( // requests the search results
+        `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&query=${query}`
+    );
+    const data = await response.json();
+    return data.results; // returns the search results
+};
